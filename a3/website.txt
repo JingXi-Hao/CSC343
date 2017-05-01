@@ -1,0 +1,5 @@
+http://stackoverflow.com/questions/3107044/preparedstatement-with-list-of-parameters-in-a-in-clause
+
+http://stackoverflow.com/questions/178479/preparedstatement-in-clause-alternatives
+
+http://www.javaranch.com/journal/200510/Journal200510.jsp#a2
