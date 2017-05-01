@@ -1,1 +1,1 @@
-# CSC343
+# CSC343: Database System Technology
