@@ -1,0 +1,13 @@
+package assignment1;
+
+public class Rank {
+	private String student, prof;
+	private int mark;
+	
+	private boolean validate(){
+		if (this.mark < 1 || this.mark > 5)
+			return false;
+		return true;
+	}
+	
+}

@@ -1,0 +1,36 @@
+package assignment1;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class Student {
+	private static final String TABLE_NAME = "Person";
+	
+	public void addTo
+	
+	public String printInfo (Connection conn, String username) throws SQLException {
+		Statement stmt = null;
+		String query = "select * from student where \"username\" = " + "\"" + username + "\"";
+		String s = "";
+		
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			int cols = rs.getMetaData().getColumnCount();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			while (rs.next()) {
+				for (int i=0; i < cols; i++) {
+					s = s.concat(rsmd.getColumnName(i+1) + ": " + rs.getObject(i+1) + "\n");					
+				}
+			}
+		} catch (SQLException e) {
+			SQLError.show(e);
+		} finally {
+			if (stmt != null) {stmt.close();}
+		}
+		return s;
+	}
+	
+
+}

@@ -1,0 +1,20 @@
+INDEX VERSION 1.127+/h/u12/c5/00/c5caoye/CSC343/CSC343/Assignment1/.metadata/.plugins/org.eclipse.jdt.core
+2328531509.index
+3534701419.index
+4101863858.index
+285833864.index
+1712043395.index
+2961919551.index
+3767654448.index
+1623673134.index
+1408094266.index
+572100818.index
+1715695753.index
+3160071663.index
+3065202864.index
+1095349962.index
+3825627042.index
+3520820020.index
+1855872150.index
+2365151767.index
+175452050.index

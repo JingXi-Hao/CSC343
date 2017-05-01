@@ -1,0 +1,46 @@
+package assignment1;
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+
+public class StudentInterface {
+	public static final String PROGRAM_NAME = "StudentInterface";
+	
+	public static void main(String[] args) throws IOException, SQLException{
+		Properties props = new Properties();
+		java.sql.Connection conn = DBConnection.getConnection(props);
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("===============================");
+    	System.out.println("Welcome to the Student Interface app");
+    	System.out.println("===============================");
+    	
+    	int lgin = 0;
+    	while (lgin == 0) {
+    		System.out.println("Please select:\n" + "1: login | 2: creat a new account\n");
+    		int choice_0 = scanner.nextInt();
+    		Student p = null;
+    		
+    		switch(choice_0) {
+    			case 1:
+    				System.out.println("Please enter your username:");
+    				String username = scanner.nextLine();
+    				p = new Student();
+    				p.setUsername(username);
+    				String s = Student.printInfo(conn);
+    				if (s == "") {
+    					System.out.println("User not exists, please check your username or crete a new account.");
+    				} else {
+    					System.out.println(s);
+    					System.out.println("You are now logged in as " + username);
+    					lgin = 1;
+    				}
+    			case 2:
+    				System.out.println("User not exists, please check your username or crete a new account.");
+    		}
+    	} 
+
+	}
+}

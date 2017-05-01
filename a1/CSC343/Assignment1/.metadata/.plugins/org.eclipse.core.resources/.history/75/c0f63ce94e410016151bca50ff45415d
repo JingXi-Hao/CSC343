@@ -1,0 +1,88 @@
+package assignment1;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class Topic {
+
+	private String name, faculty_code;
+	private int course_code;
+	private int bf, af;
+	private String username;
+	
+	private boolean is_rated(Connection conn) throws SQLException {
+		Statement st = null;
+		String query = "select * from evaluates_topic where student=\""+this.username+"\" and topic=\""+this.name+"\"";
+	}
+	
+	private boolean validate() {
+		if (bf <1 || bf >5)
+			return false;
+		if (af <1 || af >5)
+			return false;
+		return true;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getFaculty_code() {
+		return faculty_code;
+	}
+
+
+
+	public void setFaculty_code(String faculty_code) {
+		this.faculty_code = faculty_code;
+	}
+
+
+
+	public int getCourse_code() {
+		return course_code;
+	}
+
+
+
+	public void setCourse_code(int course_code) {
+		this.course_code = course_code;
+	}
+
+
+
+	public int getBf() {
+		return bf;
+	}
+
+
+
+	public void setBf(int bf) {
+		this.bf = bf;
+	}
+
+
+
+	public int getAf() {
+		return af;
+	}
+
+
+
+	public void setAf(int af) {
+		this.af = af;
+	}
+	
+	
+
+}

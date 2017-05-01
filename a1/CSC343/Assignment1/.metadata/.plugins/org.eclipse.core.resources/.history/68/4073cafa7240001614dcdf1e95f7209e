@@ -1,0 +1,45 @@
+package assignment1;
+import java.io.*;
+import java.sql.*;
+import java.util.Properties;
+
+public class PrintStudentInfo {
+	public static final String PROGRAM_NAME = "PrintStudentInfo";
+	public static void print (Connection conn, String username) throws SQLException{
+		Statement stmt = null;
+		String query = "select * from student where \"username\" = " + "\"" + username + "\"";
+		
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			int cols = rs.getMetaData().getColumnCount();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			while (rs.next()) {
+				for (int i=0; i < cols; i++) {
+					System.out.println(rsmd.getColumnName(i+1) + ": ");
+					System.out.println(rs.getObject(i+1) + "\t");
+				}
+				System.out.print("\n");
+			}
+		} catch (SQLException e) {
+			SQLError.show(e);
+		} finally {
+			if (stmt != null) {stmt.close();}
+		}
+	}
+	
+	public static void main (String [] args) throws IOException, SQLException {
+		if (args.length == 10) {
+			System.out.println("Usage: " + PROGRAM_NAME + " <name of properties file>");
+			System.exit(1);
+		}
+		Properties props = new Properties();
+		//InputStream in = PrintTable.class.getResourceAsStream("");
+		//props.load(in);
+		//in.close();
+		
+		java.sql.Connection conn = DBConnection.getConnection(props);
+		
+		PrintStudentInfo.print(conn, "c5caoye");
+	}
+}

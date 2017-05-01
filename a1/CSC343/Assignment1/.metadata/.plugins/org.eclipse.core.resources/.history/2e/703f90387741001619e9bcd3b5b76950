@@ -1,0 +1,64 @@
+package assignment1;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+import java.io.BufferedReader;
+
+
+public class csv {
+	public static final String PROGRAM_NAME = "csv";
+
+
+	
+	private static void generateCsvFile() throws SQLException, IOException{
+		Statement st = null;
+		
+		Properties props = new Properties();
+		java.sql.Connection conn = DBConnection.getConnection(props, 1);
+		
+		try {
+		FileWriter writer = new FileWriter("/h/u12/c5/00/c5caoye/CSC343/CSC343/CEA_export.csv");
+		
+			
+			String q1 = 
+					"select edition.course_code, edition.faculty_code, edition.start_date, end_date, edition.time, number_of_students, instructor, student.username, grade, age, coalesce(year_of_birth, '')+' '+coalesce(month_of_birth, '') as birth_date, gender, country_of_birth, evaluates.skill as workskill, evaluates.before_mark as workskill_before_mark, "
+					+ "evaluates.after_mark as workskill_after_mark, start_year, start_month, satisfation, rank.mark as ranking, evaluates_skill.skill as teach_skill, evaluates_skill.before_mark, evaluates_skill.after_mark," +
+					"topic, evaluates_topic.before_mark as topic_before_mark, evaluates_topic.after_mark as topic_after_mark from edition, enrols_in, rank, evaluates, evaluates_skill, evaluates_topic, instructs, student "
+					+"where edition.course_code = enrols_in.course_number and edition.faculty_code = enrols_in.faculty_code and edition.time=enrols_in.time and edition.start_date=enrols_in.start_date and "
+					+"instructs.course_code = edition.course_code and instructs.faculty_code=edition.faculty_code and instructs.time=edition.time and instructs.start_date=edition.start_date and "
+					+" evaluates_topic.student = student.username and evaluates.student = student.username and evaluates_skill.student=student.username and " +
+					"rank.student = student.username and enrols_in.student=student.username";
+			
+			String q2 = "SELECT edition.course_code, edition.faculty_code, edition.start_date, end_date, edition.time, number_of_students, grade, enrols_in.satisfation FROM edition, enrols_in WHERE course_code = course_number and edition.faculty_code = enrols_in.faculty_code and edition.time = enrols_in.time and edition.start_date = enrols_in.start_date";
+			
+			st = conn.createStatement();
+			ResultSet rs = st.executeQuery(q1);
+			int cols = rs.getMetaData().getColumnCount();
+			for (int j=0; j<cols; j++) {
+				writer.write(rs.getMetaData().getColumnLabel(j+1) + " , ");
+			}
+			writer.write("\n");
+			while (rs.next()) {
+				for(int i=0; i<cols; i++)
+					writer.write(rs.getString(i+1)+ " , ");
+				writer.write("\n");
+			}
+			writer.close();
+			
+		} catch (SQLException e) {
+			SQLError.show(e);
+		} finally {
+			if (st != null) {st.close();}
+		}
+	}
+	
+	public static void main(String [] args) throws SQLException, IOException {
+		generateCsvFile();
+	}
+	
+	}
+
+

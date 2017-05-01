@@ -1,0 +1,64 @@
+package assignment1;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Skill {
+	private String name, username;
+	private int bf, af;
+	
+	PreparedStatement stmt = null;
+	
+	private String insert = "insert into evaluates_skill values(?,?,?,?)";
+	private String update = "update evaluates_skill set before_mark=?, after_mark=? where student=? and skill=?";
+	
+	private boolean is_rated(Connection conn) throws SQLException {
+		Statement st = null;
+		String query = "select * from evaluates_skill where student=\"" + this.username + "\" and skill=\"" +this.name+"\" and beforeamrk=\""+this.bf + "\" and after_mark=\"" + this.af + "\""; 
+	
+	}
+	
+	private boolean validate() {
+		if (bf <1 || bf >5)
+			return false;
+		if (af <1 || af >5)
+			return false;
+		return true;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getBf() {
+		return bf;
+	}
+
+	public void setBf(int bf) {
+		this.bf = bf;
+	}
+
+	public int getAf() {
+		return af;
+	}
+
+	public void setAf(int af) {
+		this.af = af;
+	}
+	
+	
+}

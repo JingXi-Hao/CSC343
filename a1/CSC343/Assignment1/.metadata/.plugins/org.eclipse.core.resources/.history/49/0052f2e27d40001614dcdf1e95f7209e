@@ -1,0 +1,107 @@
+package assignment1;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class Student {
+	private static final String TABLE_NAME = "Person";
+	
+	private String username, gender, country_of_birth;
+	private int year_of_birth, moth_of_birth, start_year, start_month, age;
+	
+	private String insert = "insert into student " + "values(?,?,?,?,?,?,?,?)";
+	private String update = "update student set year_of_birth=?, month_of_birth=?, start_year=?, start_month=?, country_of_birth=?, age=?, gender=? where username=?";
+	private String delete = "delete from student where name=?";
+	
+	PreparedStatement stmt = null;
+	
+	public static String printInfo (Connection conn) throws SQLException {
+		Statement statement = null;
+		String query = "select * from student where \"username\" = " + "\"" + this.username + "\"";
+		String s = "";
+		
+		try {
+			statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			int cols = rs.getMetaData().getColumnCount();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			while (rs.next()) {
+				for (int i=0; i < cols; i++) {
+					s = s.concat(rsmd.getColumnName(i+1) + ": " + rs.getObject(i+1) + "\n");					
+				}
+			}
+		} catch (SQLException e) {
+			SQLError.show(e);
+		} finally {
+			if (statement != null) {statement.close();}
+		}
+		return s;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getCountry_of_birth() {
+		return country_of_birth;
+	}
+
+	public void setCountry_of_birth(String country_of_birth) {
+		this.country_of_birth = country_of_birth;
+	}
+
+	public int getYear_of_birth() {
+		return year_of_birth;
+	}
+
+	public void setYear_of_birth(int year_of_birth) {
+		this.year_of_birth = year_of_birth;
+	}
+
+	public int getMoth_of_birth() {
+		return moth_of_birth;
+	}
+
+	public void setMoth_of_birth(int moth_of_birth) {
+		this.moth_of_birth = moth_of_birth;
+	}
+
+	public int getStart_year() {
+		return start_year;
+	}
+
+	public void setStart_year(int start_year) {
+		this.start_year = start_year;
+	}
+
+	public int getStart_month() {
+		return start_month;
+	}
+
+	public void setStart_month(int start_month) {
+		this.start_month = start_month;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	
+}

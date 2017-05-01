@@ -1,0 +1,15 @@
+package assignment1;
+import java.sql.*;
+
+public class Experience {
+	private static final String TABLE_NAME = "Edition";
+	
+	private int course_code;
+	private String faculty_code;
+	private String time;
+	private int number_of_students;
+	private String start_date;
+	private String end_date;
+	
+	private String 
+}

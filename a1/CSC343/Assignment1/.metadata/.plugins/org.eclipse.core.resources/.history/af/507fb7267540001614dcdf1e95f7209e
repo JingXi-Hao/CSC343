@@ -1,0 +1,28 @@
+package assignment1;
+import java.util.*;
+import java.io.*;
+import java.sql.*;
+
+
+public class StudentInerface {
+	public static final String PROGRAM_NAME = "StudentInterface";
+	
+	public static void main(String[] args) throws IOException, SQLException{
+		Properties props = new Properties();
+		java.sql.Connection conn = DBConnection.getConnection(props);
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("===============================");
+    	System.out.println("Welcome to the Student Interface app");
+    	System.out.println("===============================");
+    	
+    	System.out.println();
+    	System.out.print("Please enter your username: ");
+    		
+    	String username = scanner.nextLine();
+    	PrintStudentInfo.print(conn, username);
+    	System.out.println("You are now logged in as " + username);
+
+	}
+}

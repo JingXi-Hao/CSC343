@@ -1,0 +1,41 @@
+package assignment1;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class Student {
+	private static final String TABLE_NAME = "Person";
+	
+	private String username, gender, country_of_birth;
+	private int year_of_birth, moth_of_birth, start_year, start_month, age;
+	
+	private String insert = "insert into student " + "values(?,?,?,?,?,?,?,?)";
+	private String update = "update student set year_of_birth=?, month_of_birth=?, start_year=?, start_month=?, country_of_birth=?, age=?, gender=? where username=?";
+	private String delete = "delete from student where name=?";
+	
+	PreparedStatement stmt = null;
+	
+	public String printInfo (Connection conn) throws SQLException {
+		Statement statement = null;
+		String query = "select * from student where \"username\" = " + "\"" + this.username + "\"";
+		String s = "";
+		
+		try {
+			statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			int cols = rs.getMetaData().getColumnCount();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			while (rs.next()) {
+				for (int i=0; i < cols; i++) {
+					s = s.concat(rsmd.getColumnName(i+1) + ": " + rs.getObject(i+1) + "\n");					
+				}
+			}
+		} catch (SQLException e) {
+			SQLError.show(e);
+		} finally {
+			if (stmt != null) {stmt.close();}
+		}
+		return s;
+	}
+}

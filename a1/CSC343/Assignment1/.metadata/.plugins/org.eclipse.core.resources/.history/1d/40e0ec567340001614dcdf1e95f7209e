@@ -1,0 +1,18 @@
+package assignment1;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class Student {
+	private static final String TABLE_NAME = "Person";
+	
+	public static void printStudentInfo (Connection conn) throws SQLException {
+		if (!this.validate()) {
+			System.out.println("Student fields not set");
+			System.exit(1);
+		}
+		
+		
+	}
+}

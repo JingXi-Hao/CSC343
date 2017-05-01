@@ -1,0 +1,15 @@
+package assignment1;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+public class Student {
+	private static final String TABLE_NAME = "Person";
+	
+	public static void printInfo (Connection conn, String username) throws SQLException {
+		PrintStudentInfo.print(conn, username);
+	}
+	
+
+}

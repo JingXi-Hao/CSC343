@@ -1,0 +1,8 @@
+package assignment1;
+
+public class Edition {
+	private int course_code, number_of_students;
+	private String faculty_code, time, start_date;
+	
+	
+}

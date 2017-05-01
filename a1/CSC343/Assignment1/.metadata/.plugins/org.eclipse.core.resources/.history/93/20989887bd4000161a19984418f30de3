@@ -1,0 +1,52 @@
+package assignment1;
+import java.sql.*;
+
+public class Experience {
+	private static final String TABLE_NAME = "Experience";
+	
+	private int course_code;
+	private String faculty_code;
+	private String time;
+	private String start_date;
+	
+	private int final_grade;
+	private int satisfaction;
+	public int getCourse_code() {
+		return course_code;
+	}
+	public void setCourse_code(int course_code) {
+		this.course_code = course_code;
+	}
+	public String getFaculty_code() {
+		return faculty_code;
+	}
+	public void setFaculty_code(String faculty_code) {
+		this.faculty_code = faculty_code;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
+	public int getFinal_grade() {
+		return final_grade;
+	}
+	public void setFinal_grade(int final_grade) {
+		this.final_grade = final_grade;
+	}
+	public int getSatisfaction() {
+		return satisfaction;
+	}
+	public void setSatisfaction(int satisfaction) {
+		this.satisfaction = satisfaction;
+	}
+	
+	
+}
